@@ -54,14 +54,14 @@ int main()
 			ball.move(ballVel * deltaTime.asSeconds());
 
 		// Paddle Updates
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && shape1.getPosition().y >= 0)
 			shape1.move(0, -VELOCITY * deltaTime.asSeconds());
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && shape1.getPosition().y <= 425)
 			shape1.move(0, VELOCITY * deltaTime.asSeconds());
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && shape2.getPosition().y >= 0)
 			shape2.move(0, -VELOCITY * deltaTime.asSeconds());
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && shape2.getPosition().y <= 425)
 			shape2.move(0, VELOCITY * deltaTime.asSeconds());
 
         window.clear();
