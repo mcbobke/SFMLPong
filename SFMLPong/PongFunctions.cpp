@@ -10,17 +10,20 @@ void ballReset(sf::CircleShape &ball, sf::RenderWindow &window)
 
 char ballOffScreen(sf::CircleShape &ball, sf::RenderWindow &window)
 {
-	if (ball.getPosition().x <= 0)
+	sf::Vector2f pos = ball.getPosition();
+	float rad = ball.getRadius();
+
+	if (pos.x - rad <= 0)
 	{
-		return 'b';
+		return 'b'; // Blue scored
 	}
 
-	else if (ball.getPosition().x >= window.getSize().x)
+	else if (pos.x - rad >= window.getSize().x)
 	{
-		return 'r';
+		return 'r'; // Red scored
 	}
 
-	return 'n';
+	return 'n'; // No score
 }
 
 void ballScore(char scorer, int& rscore, int& bscore)
@@ -29,4 +32,26 @@ void ballScore(char scorer, int& rscore, int& bscore)
 		rscore++;
 	else if (scorer == 'b')
 		bscore++;
+}
+
+char ballHasCollided(sf::CircleShape &ball, sf::RenderWindow &window, sf::RectangleShape &pad1, sf::RectangleShape &pad2)
+{
+	sf::Vector2f ballpos = ball.getPosition();
+	sf::Vector2f pad1pos = pad1.getPosition();
+	sf::Vector2f pad2pos = pad2.getPosition();
+	sf::Vector2u winsize = window.getSize();
+
+	float rad = ball.getRadius();
+
+	if (ballpos.x - rad > 0 && ballpos.x + rad < winsize.x)
+	{
+		if (ballpos.y - rad <= 0) // top of screen
+			return 't';
+		else if (ballpos.y + rad >= winsize.y) // bottom of screen
+			return 'b';
+
+		// Test for paddles
+	}
+
+	return 'n';
 }

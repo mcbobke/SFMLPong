@@ -43,27 +43,35 @@ int main()
 
 		// Ball Updates
 		char result = ballOffScreen(ball, window);
+		char result2 = ballHasCollided(ball, window, shape1, shape2);
 
 		if (result != 'n')
 		{
 			ballScore(result, rscore, bscore);
 			ballReset(ball, window);
 		}
-		//else if (check_ball_collide_anywhere) then change velocity to simulate a bounceback
+		else if (result2 != 'n')
+		{
+			// Reflection function here
+		}
 		else
 			ball.move(ballVel * deltaTime.asSeconds());
 
 		// Paddle Updates
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && shape1.getPosition().y >= 0)
+		sf::Vector2f pad1pos = shape1.getPosition();
+		sf::Vector2f pad2pos = shape2.getPosition();
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && pad1pos.y >= 0)
 			shape1.move(0, -VELOCITY * deltaTime.asSeconds());
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && shape1.getPosition().y <= 425)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && pad1pos.y <= window.getSize().y - 75)
 			shape1.move(0, VELOCITY * deltaTime.asSeconds());
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && shape2.getPosition().y >= 0)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && pad2pos.y >= 0)
 			shape2.move(0, -VELOCITY * deltaTime.asSeconds());
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && shape2.getPosition().y <= 425)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && pad2pos.y <= window.getSize().y - 75)
 			shape2.move(0, VELOCITY * deltaTime.asSeconds());
 
+		// Screen updates
         window.clear();
 		window.draw(shape1);
         window.draw(shape2);
