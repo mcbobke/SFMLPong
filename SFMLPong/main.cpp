@@ -15,7 +15,7 @@ int main()
 	shape2.setPosition(445, 175);
 
 	sf::RectangleShape midLine(sf::Vector2f(5, 500));
-	midLine.setFillColor(sf::Color::White);
+	midLine.setFillColor(sf::Color::White); 
 	midLine.setPosition(250, 0);
 
 	sf::CircleShape ball(10.f); // NEED TO WRITE: ballReset function in case of score, possibly ball collision function that takes ball loc, paddle locs, screen size
