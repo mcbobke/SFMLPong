@@ -1,4 +1,5 @@
 #include "BallFunctions.hpp"
+#include "AIFunctions.hpp"
 
 int main()
 {
@@ -24,8 +25,9 @@ int main()
 
 	// Various Necessities
 	sf::Clock dT;
-	float VELOCITY = 200.f;
-	sf::Vector2f ballVel(-VELOCITY, VELOCITY);
+	float ballVelFt = 200.f;
+	sf::Vector2f ballVel(-ballVelFt, ballVelFt);
+	float aiSpeed = 150.f;
 	int rscore = 0, bscore = 0;
 
     while (window.isOpen()) // Mainloop
@@ -58,7 +60,7 @@ int main()
 
 		// Paddle Updates
 		shape1.setPosition(30, sf::Mouse::getPosition(window).y - shape1.getSize().y/2);
-		///// Need to add AI for 2nd paddle
+		aiMove(shape2, ball, aiSpeed * deltaTime.asSeconds());
 
 		// Screen updates
         window.clear();

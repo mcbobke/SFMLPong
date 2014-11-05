@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include "BallFunctions.hpp"
 
 void ballReset(sf::RectangleShape &ball, sf::RenderWindow &window)
 {

@@ -2,7 +2,6 @@
 #define BALL_FUNCTIONS_HPP
 
 #include <SFML/Graphics.hpp>
-#include <string>
 
 void ballReset(sf::RectangleShape &ball, sf::RenderWindow &window);
 char ballOffScreen(sf::RectangleShape &ball, sf::RenderWindow &window);
