@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include <string>
+#include "BallFunctions.hpp"
 
 void ballReset(sf::RectangleShape &ball, sf::RenderWindow &window)
 {
@@ -67,8 +67,7 @@ char ballHasCollided(sf::RectangleShape &ball, sf::RenderWindow &window, sf::Rec
 			return '2';
 		}
 
-		else
-			return 'n'; // no collision
+		return 'n'; // no collision
 	}
 }
 

@@ -1,9 +1,9 @@
-#include <PongFunctions.hpp>
+#include "BallFunctions.hpp"
 
 int main()
 {
 	// Window Setup
-    sf::RenderWindow window(sf::VideoMode(500, 500), "SFMLPong");
+    sf::RenderWindow window(sf::VideoMode(750, 500), "SFMLPong");
 
 	// Shape Setup
 	sf::RectangleShape shape1(sf::Vector2f(15, 75));
@@ -12,20 +12,20 @@ int main()
 
 	sf::RectangleShape shape2(sf::Vector2f(15, 75));
     shape2.setFillColor(sf::Color::Blue);
-	shape2.setPosition(445, 175);
+	shape2.setPosition(705, 175);
 
 	sf::RectangleShape midLine(sf::Vector2f(5, 500));
 	midLine.setFillColor(sf::Color::White); 
-	midLine.setPosition(250, 0);
+	midLine.setPosition(375, 0);
 
 	sf::RectangleShape ball(sf::Vector2f(10, 10)); // NEED TO WRITE: ballReset function in case of score, possibly ball collision function that takes ball loc, paddle locs, screen size
 	ball.setFillColor(sf::Color::White);
-	ball.setPosition(250, 250);
+	ball.setPosition(375, 250);
 
 	// Various Necessities
 	sf::Clock dT;
 	float VELOCITY = 200.f;
-	sf::Vector2f ballVel(-VELOCITY, 0);
+	sf::Vector2f ballVel(-VELOCITY, VELOCITY);
 	int rscore = 0, bscore = 0;
 
     while (window.isOpen()) // Mainloop
@@ -57,18 +57,8 @@ int main()
 		ball.move(ballVel * deltaTime.asSeconds());
 
 		// Paddle Updates
-		sf::Vector2f pad1pos = shape1.getPosition();
-		sf::Vector2f pad2pos = shape2.getPosition();
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && pad1pos.y >= 0)
-			shape1.move(0, -VELOCITY * deltaTime.asSeconds());
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && pad1pos.y <= window.getSize().y - 75)
-			shape1.move(0, VELOCITY * deltaTime.asSeconds());
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && pad2pos.y >= 0)
-			shape2.move(0, -VELOCITY * deltaTime.asSeconds());
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && pad2pos.y <= window.getSize().y - 75)
-			shape2.move(0, VELOCITY * deltaTime.asSeconds());
+		shape1.setPosition(30, sf::Mouse::getPosition(window).y - shape1.getSize().y/2);
+		///// Need to add AI for 2nd paddle
 
 		// Screen updates
         window.clear();

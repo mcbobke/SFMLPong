@@ -1,5 +1,5 @@
-#ifndef PONG_FUNCTIONS_HPP
-#define PONG_FUNCTIONS_HPP
+#ifndef BALL_FUNCTIONS_HPP
+#define BALL_FUNCTIONS_HPP
 
 #include <SFML/Graphics.hpp>
 #include <string>
