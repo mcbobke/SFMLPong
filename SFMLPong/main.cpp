@@ -6,11 +6,11 @@ int main()
     sf::RenderWindow window(sf::VideoMode(500, 500), "SFMLPong");
 
 	// Shape Setup
-	sf::RectangleShape shape1(sf::Vector2f(25, 75));
+	sf::RectangleShape shape1(sf::Vector2f(15, 75));
 	shape1.setFillColor(sf::Color::Red);
 	shape1.setPosition(30, 175);
 
-	sf::RectangleShape shape2(sf::Vector2f(25, 75));
+	sf::RectangleShape shape2(sf::Vector2f(15, 75));
     shape2.setFillColor(sf::Color::Blue);
 	shape2.setPosition(445, 175);
 
@@ -18,15 +18,14 @@ int main()
 	midLine.setFillColor(sf::Color::White); 
 	midLine.setPosition(250, 0);
 
-	sf::CircleShape ball(10.f); // NEED TO WRITE: ballReset function in case of score, possibly ball collision function that takes ball loc, paddle locs, screen size
+	sf::RectangleShape ball(sf::Vector2f(10, 10)); // NEED TO WRITE: ballReset function in case of score, possibly ball collision function that takes ball loc, paddle locs, screen size
 	ball.setFillColor(sf::Color::White);
-	ball.setOrigin(10, 10);
 	ball.setPosition(250, 250);
 
 	// Various Necessities
 	sf::Clock dT;
 	float VELOCITY = 200.f;
-	sf::Vector2f ballVel(-VELOCITY, VELOCITY);
+	sf::Vector2f ballVel(-VELOCITY, 0);
 	int rscore = 0, bscore = 0;
 
     while (window.isOpen()) // Mainloop
@@ -52,10 +51,10 @@ int main()
 		}
 		else if (result2 != 'n')
 		{
-			// Reflection function here
+			ballCollide(ballVel, result2);
 		}
-		else
-			ball.move(ballVel * deltaTime.asSeconds());
+		
+		ball.move(ballVel * deltaTime.asSeconds());
 
 		// Paddle Updates
 		sf::Vector2f pad1pos = shape1.getPosition();
