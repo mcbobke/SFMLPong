@@ -53,7 +53,7 @@ char ballHasCollided(sf::RectangleShape &ball, sf::RenderWindow &window, sf::Rec
 			(ballpos.y < pad1pos.y && ballpos.y + 10 > pad1pos.y) || 
 			(ballpos.y > pad1pos.y && ballpos.y < pad1pos.y + 75)))
 		{
-			ball.setPosition(pad1pos.x + 16, ballpos.y);
+			ball.setPosition(pad1pos.x + 15, ballpos.y);
 			return '1';
 		}
 
@@ -63,7 +63,7 @@ char ballHasCollided(sf::RectangleShape &ball, sf::RenderWindow &window, sf::Rec
 			(ballpos.y < pad2pos.y && ballpos.y + 10 > pad2pos.y) || 
 			(ballpos.y > pad2pos.y && ballpos.y < pad2pos.y + 75)))
 		{
-			ball.setPosition(pad2pos.x + -16, ballpos.y);
+			ball.setPosition(pad2pos.x - 15, ballpos.y);
 			return '2';
 		}
 
