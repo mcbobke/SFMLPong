@@ -17,11 +17,27 @@ int main()
 
 	sf::RectangleShape midLine(sf::Vector2f(5, 500));
 	midLine.setFillColor(sf::Color::White); 
-	midLine.setPosition(375, 0);
+	midLine.setPosition(373, 0);
 
-	sf::RectangleShape ball(sf::Vector2f(10, 10)); // NEED TO WRITE: ballReset function in case of score, possibly ball collision function that takes ball loc, paddle locs, screen size
+	sf::RectangleShape ball(sf::Vector2f(10, 10));
 	ball.setFillColor(sf::Color::White);
 	ball.setPosition(375, 250);
+
+	// Text setup
+	sf::Font scoreFont;
+	scoreFont.loadFromFile("retganon.ttf");
+
+	sf::Text rText("00", scoreFont);
+	rText.setCharacterSize(30);
+	rText.setStyle(sf::Text::Bold);
+	rText.setColor(sf::Color::White);
+	rText.setPosition(343, 0);
+
+	sf::Text bText("00", scoreFont);
+	bText.setCharacterSize(30);
+	bText.setStyle(sf::Text::Bold);
+	bText.setColor(sf::Color::White);
+	bText.setPosition(387, 0);
 
 	// Various Necessities
 	sf::Clock dT;
@@ -32,6 +48,12 @@ int main()
 
     while (window.isOpen()) // Mainloop
     {
+		if (rscore == 10 || bscore == 10) // Check if game over
+		{
+			window.close();
+			break;
+		}
+
 		sf::Time deltaTime = dT.getElapsedTime(); // Get elapsed time since last frame
 		dT.restart(); // Restart for next calculation
 
@@ -48,7 +70,7 @@ int main()
 
 		if (result != 'n')
 		{
-			ballScore(result, rscore, bscore);
+			ballScore(result, rscore, bscore, rText, bText);
 			ballReset(ball, window);
 		}
 		else if (result2 != 'n')
@@ -68,6 +90,8 @@ int main()
         window.draw(shape2);
 		window.draw(midLine);
 		window.draw(ball);
+		window.draw(rText);
+		window.draw(bText);
         window.display();
     }
 

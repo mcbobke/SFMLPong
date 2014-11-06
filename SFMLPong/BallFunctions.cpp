@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <string>
 
 void ballReset(sf::RectangleShape &ball, sf::RenderWindow &window)
 {
@@ -24,12 +25,18 @@ char ballOffScreen(sf::RectangleShape &ball, sf::RenderWindow &window)
 	return 'n'; // No score
 }
 
-void ballScore(char scorer, int& rscore, int& bscore)
+void ballScore(char scorer, int& rscore, int& bscore, sf::Text &rText, sf::Text &bText)
 {
 	if (scorer == 'r')
+	{
 		rscore++;
+		rText.setString("0" + std::to_string(rscore));
+	}
 	else if (scorer == 'b')
+	{
 		bscore++;
+		bText.setString("0" + std::to_string(bscore));
+	}
 }
 
 char ballHasCollided(sf::RectangleShape &ball, sf::RenderWindow &window, sf::RectangleShape &pad1, sf::RectangleShape &pad2)
