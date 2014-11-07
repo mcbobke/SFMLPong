@@ -18,8 +18,8 @@ bld/
 [Bb]in/
 [Oo]bj/
 
-!libsndfile-1.dll
-!openal32.dll
+!Debug\libsndfile-1.dll
+!Debug\openal32.dll
 
 # Roslyn cache directories
 *.ide/
