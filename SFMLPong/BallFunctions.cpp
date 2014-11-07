@@ -49,9 +49,15 @@ char ballHasCollided(sf::RectangleShape &ball, sf::RenderWindow &window, sf::Rec
 	if (ballpos.x > 0 && ballpos.x + 10 < winsize.x)
 	{
 		if (ballpos.y < 0) // top of screen
+		{
+			ball.setPosition(ballpos.x, 0);
 			return 't';
+		}
 		else if (ballpos.y + 10 > winsize.y) // bottom of screen
+		{
+			ball.setPosition(ballpos.x, winsize.y - 10);
 			return 'b';
+		}
 
 		// red paddle
 		if (ballpos.x < pad1pos.x + 15 && ballpos.x > pad1pos.x + 13 && ballpos.x + 10 > pad1pos.x &&
