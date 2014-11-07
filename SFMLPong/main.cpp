@@ -1,5 +1,6 @@
 #include "BallFunctions.hpp"
 #include "AIFunctions.hpp"
+#include "SFML\Audio.hpp"
 
 int main()
 {
@@ -39,6 +40,17 @@ int main()
 	bText.setColor(sf::Color::White);
 	bText.setPosition(387, 0);
 
+	// Sound setup
+	sf::SoundBuffer collBuff;
+	collBuff.loadFromFile("Beep2.wav");
+	sf::Sound collSound;
+	collSound.setBuffer(collBuff);
+
+	sf::SoundBuffer scoreBuff;
+	scoreBuff.loadFromFile("Beep1.wav");
+	sf::Sound scoreSound;
+	scoreSound.setBuffer(scoreBuff);
+
 	// Various Necessities
 	sf::Clock dT;
 	float ballVelFt = 200.f;
@@ -70,11 +82,13 @@ int main()
 
 		if (result != 'n')
 		{
+			scoreSound.play();
 			ballScore(result, rscore, bscore, rText, bText);
 			ballReset(ball, window);
 		}
 		else if (result2 != 'n')
 		{
+			collSound.play();
 			ballCollide(ballVel, result2);
 		}
 		
