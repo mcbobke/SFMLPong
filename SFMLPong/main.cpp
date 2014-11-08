@@ -5,7 +5,7 @@
 int main()
 {
 	// Window Setup
-    sf::RenderWindow window(sf::VideoMode(750, 500), "SFMLPong");
+	sf::RenderWindow window(sf::VideoMode(750, 500), "SFMLPong");
 
 	// Shape Setup
 	sf::RectangleShape shape1(sf::Vector2f(15, 75));
@@ -13,7 +13,7 @@ int main()
 	shape1.setPosition(30, 175);
 
 	sf::RectangleShape shape2(sf::Vector2f(15, 75));
-    shape2.setFillColor(sf::Color::Blue);
+	shape2.setFillColor(sf::Color::Blue);
 	shape2.setPosition(705, 175);
 
 	sf::RectangleShape midLine(sf::Vector2f(5, 500));
@@ -58,8 +58,8 @@ int main()
 	float aiSpeed = 150.f;
 	int rscore = 0, bscore = 0;
 
-    while (window.isOpen()) // Mainloop
-    {
+	while (window.isOpen()) // Mainloop
+	{
 		if (rscore == 10 || bscore == 10) // Check if game over
 		{
 			window.close();
@@ -69,11 +69,11 @@ int main()
 		sf::Time deltaTime = dT.getElapsedTime(); // Get elapsed time since last frame
 		dT.restart(); // Restart for next calculation
 
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
 		}
 
 		// Ball Updates
@@ -91,7 +91,7 @@ int main()
 			collSound.play();
 			ballCollide(ballVel, result2);
 		}
-		
+
 		ball.move(ballVel * deltaTime.asSeconds());
 
 		// Paddle Updates
@@ -99,15 +99,15 @@ int main()
 		aiMove(shape2, ball, aiSpeed * deltaTime.asSeconds());
 
 		// Screen updates
-        window.clear();
+		window.clear();
 		window.draw(shape1);
-        window.draw(shape2);
+		window.draw(shape2);
 		window.draw(midLine);
 		window.draw(ball);
 		window.draw(rText);
 		window.draw(bText);
-        window.display();
-    }
+		window.display();
+	}
 
-    return 0;
+	return 0;
 }
