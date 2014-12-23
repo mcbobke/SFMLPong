@@ -1,5 +1,7 @@
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <string>
+
+// TODO: Reduce the number of arguments constantly being passed to these functions every tick
 
 void ballReset(sf::RectangleShape &ball, sf::RenderWindow &window)
 {
@@ -60,8 +62,8 @@ char ballHasCollided(sf::RectangleShape &ball, sf::RenderWindow &window, sf::Rec
 		}
 
 		// red paddle
-		if (ballpos.x < pad1pos.x + 15 && ballpos.x > pad1pos.x + 13 && ballpos.x + 10 > pad1pos.x &&
-			((ballpos.y > pad1pos.y && ballpos.y + 10 < pad1pos.y + 75) ||
+		if (ballpos.x < pad1pos.x + 15 && ballpos.x > pad1pos.x + 13 && ballpos.x + 10 > pad1pos.x && // This whole line MUST be true
+			((ballpos.y > pad1pos.y && ballpos.y + 10 < pad1pos.y + 75) || // These 3 lines must have 1 true
 			(ballpos.y < pad1pos.y && ballpos.y + 10 > pad1pos.y) || 
 			(ballpos.y > pad1pos.y && ballpos.y < pad1pos.y + 75)))
 		{
@@ -70,7 +72,7 @@ char ballHasCollided(sf::RectangleShape &ball, sf::RenderWindow &window, sf::Rec
 		}
 
 		// blue paddle
-		else if (ballpos.x + 10 > pad2pos.x && ballpos.x + 10 < pad2pos.x + 2 && ballpos.x < pad2pos.x + 15 &&
+		else if (ballpos.x + 10 > pad2pos.x && ballpos.x + 10 < pad2pos.x + 2 && ballpos.x < pad2pos.x + 15 && // Same as above
 			((ballpos.y > pad2pos.y && ballpos.y + 10 < pad2pos.y + 75) || 
 			(ballpos.y < pad2pos.y && ballpos.y + 10 > pad2pos.y) || 
 			(ballpos.y > pad2pos.y && ballpos.y < pad2pos.y + 75)))
@@ -83,10 +85,18 @@ char ballHasCollided(sf::RectangleShape &ball, sf::RenderWindow &window, sf::Rec
 	}
 }
 
-void ballCollide(sf::Vector2f &ballVel, char collideObj)
+void ballCollide(sf::Vector2f &ballVel, char collideObj, sf::RectangleShape &paddle1, sf::RectangleShape &paddle2, sf::RectangleShape &ball)
 {
 	if (collideObj == 't' || collideObj == 'b')
 		ballVel.y  = ballVel.y * -1;
-	else if (collideObj == '1' || collideObj == '2')
-		ballVel.x = ballVel.x * -1;
+	else if (collideObj == '1')
+		ballReflection(ballVel, paddle1, ball); // used to be "ballVel.x = ballVel.x * -1;"
+	else if (collideObj == '2')
+		ballReflection(ballVel, paddle2, ball);
+}
+
+void ballReflection(sf::Vector2f &ballVel, sf::RectangleShape &paddle, sf::RectangleShape &ball)
+{
+	// Where is the middle of the ball when the ball hit the paddle? (relative to the middle of the paddle)
+	double relativeIntersectY = (paddle.getPosition().y + (paddle.getSize().y / 2)) - (ball.getPosition().y + (ball.getSize().y / 2));
 }
