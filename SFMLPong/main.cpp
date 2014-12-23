@@ -1,6 +1,6 @@
 #include "BallFunctions.hpp"
 #include "AIFunctions.hpp"
-#include "SFML\Audio.hpp"
+#include "SFML/Audio.hpp"
 
 int main()
 {
@@ -89,7 +89,7 @@ int main()
 		else if (result2 != 'n')
 		{
 			collSound.play();
-			ballCollide(ballVel, result2);
+			ballCollide(ballVel, result2, shape1, shape2, ball);
 		}
 
 		ball.move(ballVel * deltaTime.asSeconds());
