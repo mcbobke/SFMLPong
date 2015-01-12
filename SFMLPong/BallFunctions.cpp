@@ -90,9 +90,9 @@ void ballCollide(sf::Vector2f &ballVel, char collideObj, sf::RectangleShape &pad
 	if (collideObj == 't' || collideObj == 'b')
 		ballVel.y  = ballVel.y * -1;
 	else if (collideObj == '1')
-		ballReflection(ballVel, paddle1, ball); // used to be "ballVel.x = ballVel.x * -1;"
+		ballVel.x = ballVel.x * -1; // need to replace with ballReflection after function is finished
 	else if (collideObj == '2')
-		ballReflection(ballVel, paddle2, ball);
+		ballVel.x = ballVel.x * -1;
 }
 
 void ballReflection(sf::Vector2f &ballVel, sf::RectangleShape &paddle, sf::RectangleShape &ball)
