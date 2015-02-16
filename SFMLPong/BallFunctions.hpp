@@ -13,6 +13,6 @@ char ballHasCollided(sf::RectangleShape &ball, sf::RenderWindow &window, sf::Rec
 
 void ballCollide(sf::Vector2f &ballvel, char collideObj, sf::RectangleShape &paddle1, sf::RectangleShape &paddle2, sf::RectangleShape &ball);
 
-void ballReflection(sf::Vector2f &ballvel, sf::RectangleShape &paddle, sf::RectangleShape &ball);
+void ballReflection(sf::Vector2f &ballVel, sf::RectangleShape &paddle, sf::RectangleShape &ball);
 
 #endif

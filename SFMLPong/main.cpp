@@ -5,7 +5,7 @@
 int main()
 {
 	// Window Setup
-	sf::RenderWindow window(sf::VideoMode(750, 500), "SFMLPong");
+	sf::RenderWindow window(sf::VideoMode(900, 500), "SFMLPong");
 
 	// Shape Setup
 	sf::RectangleShape shape1(sf::Vector2f(15, 75));
@@ -14,15 +14,15 @@ int main()
 
 	sf::RectangleShape shape2(sf::Vector2f(15, 75));
 	shape2.setFillColor(sf::Color::Blue);
-	shape2.setPosition(705, 175);
+	shape2.setPosition(855, 175);
 
 	sf::RectangleShape midLine(sf::Vector2f(5, 500));
 	midLine.setFillColor(sf::Color::White); 
-	midLine.setPosition(373, 0);
+	midLine.setPosition(448, 0);
 
 	sf::RectangleShape ball(sf::Vector2f(10, 10));
 	ball.setFillColor(sf::Color::White);
-	ball.setPosition(375, 250);
+	ball.setPosition(450, 250);
 
 	// Text setup
 	sf::Font scoreFont;
@@ -32,13 +32,13 @@ int main()
 	rText.setCharacterSize(30);
 	rText.setStyle(sf::Text::Bold);
 	rText.setColor(sf::Color::White);
-	rText.setPosition(343, 0);
+	rText.setPosition(418, 0);
 
 	sf::Text bText("00", scoreFont);
 	bText.setCharacterSize(30);
 	bText.setStyle(sf::Text::Bold);
 	bText.setColor(sf::Color::White);
-	bText.setPosition(387, 0);
+	bText.setPosition(462, 0);
 
 	// Sound setup
 	sf::SoundBuffer collBuff;
@@ -53,9 +53,9 @@ int main()
 
 	// Various Necessities
 	sf::Clock dT;
-	float ballVelFt = 200.f;
+	float ballVelFt = 300.f;
 	sf::Vector2f ballVel(-ballVelFt, ballVelFt);
-	float aiSpeed = 150.f;
+	float aiSpeed = 175.f;
 	int rscore = 0, bscore = 0;
 
 	while (window.isOpen()) // Mainloop
@@ -95,8 +95,24 @@ int main()
 		ball.move(ballVel * deltaTime.asSeconds());
 
 		// Paddle Updates
-		shape1.setPosition(30, sf::Mouse::getPosition(window).y - shape1.getSize().y/2);
-		aiMove(shape2, ball, aiSpeed * deltaTime.asSeconds());
+
+		sf::Vector2f pad1pos = shape1.getPosition();
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && pad1pos.y > 0)
+			shape1.move(0, -0.3f);
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && pad1pos.y < 425.f)
+			shape1.move(0, 0.3f);
+
+		//aiMove(shape2, ball, aiSpeed * deltaTime.asSeconds());
+
+		// Uncomment the above function call and comment out the below code to enable AI
+
+		sf::Vector2f pad2pos = shape2.getPosition();
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && pad2pos.y > 0)
+			shape2.move(0, -0.3f);
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && pad2pos.y < 425.f)
+			shape2.move(0, 0.3f);
 
 		// Screen updates
 		window.clear();

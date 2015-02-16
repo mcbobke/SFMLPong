@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <math.h>
 
 // TODO: Reduce the number of arguments constantly being passed to these functions every tick
 
@@ -85,18 +86,55 @@ char ballHasCollided(sf::RectangleShape &ball, sf::RenderWindow &window, sf::Rec
 	}
 }
 
+void ballReflection(sf::Vector2f &ballVel, sf::RectangleShape &paddle, sf::RectangleShape &ball)
+{
+	float paddleHeight = paddle.getSize().y;
+
+	// Where is the middle of the ball when the ball hit the paddle? (relative to the middle of the paddle)
+	float relativeIntersectY = (paddle.getPosition().y + (paddleHeight / 2)) - (ball.getPosition().y + (ball.getSize().y / 2));
+
+	ballVel.x = -ballVel.x;
+
+	if (relativeIntersectY < -20.f)
+	{
+		if (ballVel.y < 0)
+			ballVel.y = -(ballVel.y + ballVel.y * -0.15);
+		else
+			ballVel.y = ballVel.y + ballVel.y * -0.15;
+	}
+	else if (relativeIntersectY >= -20.f && relativeIntersectY < 0)
+	{
+		ballVel.y = ballVel.y + ballVel.y * -0.05;
+	}
+	else if (relativeIntersectY == 0)
+	{
+		ballVel.y = -ballVel.y;
+	}
+	else if (relativeIntersectY > 0 && relativeIntersectY <= 20.f)
+	{
+		ballVel.y = ballVel.y + ballVel.y * 0.05;
+	}
+	else if (relativeIntersectY > 20.f)
+	{
+		if (ballVel.y > 0)
+			ballVel.y = -(ballVel.y + ballVel.y * 0.15);
+		else
+			ballVel.y = ballVel.y + ballVel.y * 0.15;
+	}
+}
+
 void ballCollide(sf::Vector2f &ballVel, char collideObj, sf::RectangleShape &paddle1, sf::RectangleShape &paddle2, sf::RectangleShape &ball)
 {
 	if (collideObj == 't' || collideObj == 'b')
 		ballVel.y  = ballVel.y * -1;
 	else if (collideObj == '1')
-		ballVel.x = ballVel.x * -1; // need to replace with ballReflection after function is finished
+	{
+		//ballVel.x = ballVel.x * -1; // need to replace with ballReflection after function is finished
+		ballReflection(ballVel, paddle1, ball);
+	}
 	else if (collideObj == '2')
-		ballVel.x = ballVel.x * -1;
-}
-
-void ballReflection(sf::Vector2f &ballVel, sf::RectangleShape &paddle, sf::RectangleShape &ball)
-{
-	// Where is the middle of the ball when the ball hit the paddle? (relative to the middle of the paddle)
-	double relativeIntersectY = (paddle.getPosition().y + (paddle.getSize().y / 2)) - (ball.getPosition().y + (ball.getSize().y / 2));
+	{
+		//ballVel.x = ballVel.x * -1;
+		ballReflection(ballVel, paddle2, ball);
+	}
 }
