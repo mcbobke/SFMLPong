@@ -17,7 +17,7 @@ int main()
 	shape2.setPosition(855, 175);
 
 	sf::RectangleShape midLine(sf::Vector2f(5, 500));
-	midLine.setFillColor(sf::Color::White); 
+	midLine.setFillColor(sf::Color::White);
 	midLine.setPosition(448, 0);
 
 	sf::RectangleShape ball(sf::Vector2f(10, 10));

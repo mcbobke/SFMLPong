@@ -1,7 +1,7 @@
 #ifndef BALL_FUNCTIONS_HPP
 #define BALL_FUNCTIONS_HPP
 
-#include <SFML/Graphics.hpp>
+#include "SFML/Graphics.hpp"
 
 void ballReset(sf::RectangleShape &ball, sf::RenderWindow &window);
 
