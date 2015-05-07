@@ -13,12 +13,12 @@ int main()
 	sf::View view(originalViewPosition);
 	window.setView(view);
 	float shakeIntensity = 0.f;
-	float shakeDecay = 0.2f;
+	float shakeDecay = 0.3f;
 
 	// Random number setup
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_real_distribution<> dis(0, 1);
+	std::uniform_real_distribution<> dis(-1, 1);
 
 	// Shape Setup
 	sf::RectangleShape shape1(sf::Vector2f(15, 75));
@@ -98,7 +98,9 @@ int main()
 			scoreSound.play();
 			ballScore(result, rscore, bscore, rText, bText);
 			ballReset(ball, window);
-			shakeIntensity = 0.3f;
+
+			if (shakeIntensity <= 0.f)
+				shakeIntensity = 0.3f;
 		}
 		else if (result2 != 'n')
 		{
@@ -135,7 +137,7 @@ int main()
 
 			view.move(shakeValue*shakeIntensity, shakeValue*shakeIntensity);
 
-			shakeIntensity -= static_cast<float>(deltaTime.asMilliseconds()) * shakeDecay;
+			shakeIntensity -= static_cast<float>(deltaTime.asSeconds()) * shakeDecay;
 		}
 
 		else
