@@ -1,6 +1,7 @@
 #include "BallFunctions.hpp"
 #include "AIFunctions.hpp"
 #include "SFML/Audio.hpp"
+#include <random>
 
 int main()
 {
@@ -115,6 +116,7 @@ int main()
 			shape2.move(0, 0.3f);
 
 		// Screen updates
+		
 		window.clear();
 		window.draw(shape1);
 		window.draw(shape2);
