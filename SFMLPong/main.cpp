@@ -8,18 +8,6 @@ int main()
 	// Window Setup
 	sf::RenderWindow window(sf::VideoMode(900, 500), "SFMLPong");
 
-	// View Setup
-	sf::FloatRect originalViewPosition(0, 0, 900, 500);
-	sf::View view(originalViewPosition);
-	window.setView(view);
-	float shakeIntensity = 0.f;
-	float shakeDecay = 0.3f;
-
-	// Random number setup
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_real_distribution<> dis(-1, 1);
-
 	// Shape Setup
 	sf::RectangleShape shape1(sf::Vector2f(15, 75));
 	shape1.setFillColor(sf::Color::Red);
@@ -98,9 +86,6 @@ int main()
 			scoreSound.play();
 			ballScore(result, rscore, bscore, rText, bText);
 			ballReset(ball, window);
-
-			if (shakeIntensity <= 0.f)
-				shakeIntensity = 0.3f;
 		}
 		else if (result2 != 'n')
 		{
@@ -131,22 +116,8 @@ int main()
 			shape2.move(0, 0.3f);
 
 		// Screen updates
-		if (shakeIntensity > 0.f)
-		{
-			float shakeValue = dis(gen);
-
-			view.move(shakeValue*shakeIntensity, shakeValue*shakeIntensity);
-
-			shakeIntensity -= static_cast<float>(deltaTime.asSeconds()) * shakeDecay;
-		}
-
-		else
-		{
-			view.reset(originalViewPosition);
-		}
-
+		
 		window.clear();
-		window.setView(view);
 		window.draw(shape1);
 		window.draw(shape2);
 		window.draw(midLine);
