@@ -100,9 +100,9 @@ int main()
 		sf::Vector2f pad1pos = shape1.getPosition();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && pad1pos.y > 0)
-			shape1.move(0, -0.3f);
+			shape1.move(0, -0.1f);
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && pad1pos.y < 425.f)
-			shape1.move(0, 0.3f);
+			shape1.move(0, 0.1f);
 
 		//aiMove(shape2, ball, aiSpeed * deltaTime.asSeconds());
 
@@ -111,9 +111,9 @@ int main()
 		sf::Vector2f pad2pos = shape2.getPosition();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && pad2pos.y > 0)
-			shape2.move(0, -0.3f);
+			shape2.move(0, -0.1f);
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && pad2pos.y < 425.f)
-			shape2.move(0, 0.3f);
+			shape2.move(0, 0.1f);
 
 		// Screen updates
 		
