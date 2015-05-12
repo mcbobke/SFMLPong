@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef BALL_FUNCTIONS_HPP
 #define BALL_FUNCTIONS_HPP
 

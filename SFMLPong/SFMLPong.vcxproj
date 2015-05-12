@@ -92,13 +92,13 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\SFMLPong;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="BallFunctions.cpp" />
+    <ClCompile Include="MainGameState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIFunctions.hpp" />
     <ClInclude Include="BallFunctions.hpp" />
-    <ClInclude Include="GameState.h" />
-    <ClInclude Include="GameStateManager.h" />
-    <ClInclude Include="MainGameState.h" />
+    <ClInclude Include="GameStateManager.hpp" />
+    <ClInclude Include="MainGameState.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="retganon.ttf" />

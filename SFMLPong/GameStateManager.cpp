@@ -1,4 +1,4 @@
-#include "GameStateManager.h"
+#include "GameStateManager.hpp"
 
 GameStateManager::GameStateManager()
 {
@@ -7,14 +7,16 @@ GameStateManager::GameStateManager()
 
 void GameStateManager::SetState(GameState* state)
 {
-	if (state != nullptr)
+	if (this->state != nullptr)
 	{
 		this->state->Destroy(this->window);
+
+		delete this->state;
 	}
 
 	this->state = state;
 
-	if (state != nullptr)
+	if (this->state != nullptr)
 	{
 		this->state->Initialize(this->window);
 	}
@@ -23,4 +25,21 @@ void GameStateManager::SetState(GameState* state)
 void GameStateManager::SetWindow(sf::RenderWindow* window)
 {
 	this->window = window;
+}
+
+void GameStateManager::UpdateState()
+{
+	if (this->state != nullptr)
+		state->Update(this->window);
+}
+
+void GameStateManager::RenderState()
+{
+	if (this->state != nullptr)
+		state->Render(this->window);
+}
+
+bool GameStateManager::stateExists()
+{
+	return state != nullptr;
 }
