@@ -1,13 +1,16 @@
+#pragma once
+
 #ifndef BALL_FUNCTIONS_HPP
 #define BALL_FUNCTIONS_HPP
 
 #include "SFML/Graphics.hpp"
+#include "Score.hpp"
 
 void ballReset(sf::RectangleShape &ball, sf::RenderWindow &window);
 
 char ballOffScreen(sf::RectangleShape &ball, sf::RenderWindow &window);
 
-void ballScore(char scorer, int& rscore, int& bscore, sf::Text &rText, sf::Text &bText);
+void ballScore(char scorer, Score &rScore, Score &bScore);
 
 char ballHasCollided(sf::RectangleShape &ball, sf::RenderWindow &window, sf::RectangleShape &pad1, sf::RectangleShape &pad2);
 

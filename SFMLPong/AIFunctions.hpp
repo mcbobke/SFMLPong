@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef AI_FUNCTIONS_HPP
 #define AI_FUNCTIONS_HPP
 
