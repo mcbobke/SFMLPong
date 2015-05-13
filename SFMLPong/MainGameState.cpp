@@ -23,17 +23,8 @@ void MainGameState::Initialize(sf::RenderWindow* window)
 	scoreFont = sf::Font();
 	scoreFont.loadFromFile("retganon.ttf");
 
-	rText = sf::Text("00", scoreFont);
-	rText.setCharacterSize(30);
-	rText.setStyle(sf::Text::Bold);
-	rText.setColor(sf::Color::White);
-	rText.setPosition(418, 0);
-
-	bText = sf::Text("00", scoreFont);
-	bText.setCharacterSize(30);
-	bText.setStyle(sf::Text::Bold);
-	bText.setColor(sf::Color::White);
-	bText.setPosition(462, 0);
+	rScore = Score(scoreFont, 30, sf::Text::Bold, sf::Color::White, 418.f, 0.f);
+	bScore = Score(scoreFont, 30, sf::Text::Bold, sf::Color::White, 462.f, 0.f);
 
 	// Sound setup
 	collBuff = sf::SoundBuffer();
@@ -51,13 +42,11 @@ void MainGameState::Initialize(sf::RenderWindow* window)
 	ballVelFt = 300.f;
 	ballVel = sf::Vector2f(-ballVelFt, ballVelFt);
 	aiSpeed = 175.f;
-	rscore = 0;
-	bscore = 0;
 }
 
 void MainGameState::Update(sf::RenderWindow* window)
 {
-	if (rscore == 10 || bscore == 10) // Check if game over
+	if (rScore.getScore() == 10 || bScore.getScore() == 10) // Check if game over
 	{
 		stateManager.SetState(nullptr);
 		return;
@@ -83,7 +72,7 @@ void MainGameState::Update(sf::RenderWindow* window)
 	if (result != 'n')
 	{
 		scoreSound.play();
-		ballScore(result, rscore, bscore, rText, bText);
+		ballScore(result, rScore, bScore);
 		ballReset(ball, *window);
 	}
 	else if (result2 != 'n')
@@ -122,12 +111,11 @@ void MainGameState::Render(sf::RenderWindow* window)
 	window->draw(shape2);
 	window->draw(midLine);
 	window->draw(ball);
-	window->draw(rText);
-	window->draw(bText);
+	rScore.drawScore(window);
+	bScore.drawScore(window);
 	window->display();
 }
 
 void MainGameState::Destroy(sf::RenderWindow* window)
 {
-	
 }

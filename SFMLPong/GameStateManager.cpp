@@ -41,5 +41,5 @@ void GameStateManager::RenderState()
 
 bool GameStateManager::stateExists()
 {
-	return state != nullptr;
+	return this->state != nullptr;
 }

@@ -93,12 +93,14 @@
     </ClCompile>
     <ClCompile Include="BallFunctions.cpp" />
     <ClCompile Include="MainGameState.cpp" />
+    <ClCompile Include="Score.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIFunctions.hpp" />
     <ClInclude Include="BallFunctions.hpp" />
     <ClInclude Include="GameStateManager.hpp" />
     <ClInclude Include="MainGameState.hpp" />
+    <ClInclude Include="Score.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="retganon.ttf" />

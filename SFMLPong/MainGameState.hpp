@@ -7,6 +7,7 @@
 #include "BallFunctions.hpp"
 #include "AIFunctions.hpp"
 #include "SFML/Audio.hpp"
+#include "Score.hpp"
 
 class MainGameState : public GameState
 {
@@ -28,16 +29,14 @@ private:
 	sf::RectangleShape ball;
 
 	sf::Font scoreFont;
-	sf::Text rText;
-	sf::Text bText;
+	Score rScore;
+	Score bScore;
 
 	sf::SoundBuffer collBuff;
 	sf::Sound collSound;
 	sf::SoundBuffer scoreBuff;
 	sf::Sound scoreSound;
 
-	int rscore;
-	int bscore;
 	float ballVelFt;
 	sf::Vector2f ballVel;
 	sf::Clock dT;

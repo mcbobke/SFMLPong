@@ -1,6 +1,7 @@
 #include "SFML/Graphics.hpp"
 #include <string>
 #include <math.h>
+#include "Score.hpp"
 
 // TODO: Reduce the number of arguments constantly being passed to these functions every tick
 
@@ -28,17 +29,17 @@ char ballOffScreen(sf::RectangleShape &ball, sf::RenderWindow &window)
 	return 'n'; // No score
 }
 
-void ballScore(char scorer, int& rscore, int& bscore, sf::Text &rText, sf::Text &bText)
+void ballScore(char scorer, Score &rScore, Score &bScore)
 {
 	if (scorer == 'r')
 	{
-		rscore++;
-		rText.setString("0" + std::to_string(rscore));
+		rScore.incrementScore();
+		rScore.setText();
 	}
 	else if (scorer == 'b')
 	{
-		bscore++;
-		bText.setString("0" + std::to_string(bscore));
+		bScore.incrementScore();
+		bScore.setText();
 	}
 }
 
