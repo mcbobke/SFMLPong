@@ -94,6 +94,7 @@
     <ClCompile Include="BallFunctions.cpp" />
     <ClCompile Include="MainGameState.cpp" />
     <ClCompile Include="Score.cpp" />
+    <ClCompile Include="StartMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIFunctions.hpp" />
@@ -101,6 +102,7 @@
     <ClInclude Include="GameStateManager.hpp" />
     <ClInclude Include="MainGameState.hpp" />
     <ClInclude Include="Score.hpp" />
+    <ClInclude Include="StartMenu.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="retganon.ttf" />
