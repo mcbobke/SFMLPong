@@ -87,6 +87,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AIFunctions.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\SFMLPong;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -99,6 +100,7 @@
   <ItemGroup>
     <ClInclude Include="AIFunctions.hpp" />
     <ClInclude Include="BallFunctions.hpp" />
+    <ClInclude Include="Button.hpp" />
     <ClInclude Include="GameStateManager.hpp" />
     <ClInclude Include="MainGameState.hpp" />
     <ClInclude Include="Score.hpp" />
