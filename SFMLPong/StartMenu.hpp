@@ -3,7 +3,8 @@
 #ifndef START_MENU_HPP
 #define START_MENU_HPP
 
-#include "SFML/Graphics.hpp"
+#include "GameStateManager.hpp"
+#include "Button.hpp"
 
 class StartMenu : public GameState
 {
@@ -19,6 +20,10 @@ public:
 
 private:
 
+	sf::Font font;
+	sf::Text titleText;
+	Button startButton;
+	Button quitButton;
 };
 
 #endif

@@ -96,6 +96,7 @@
     <ClCompile Include="MainGameState.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="StartMenu.cpp" />
+    <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIFunctions.hpp" />
@@ -105,6 +106,7 @@
     <ClInclude Include="MainGameState.hpp" />
     <ClInclude Include="Score.hpp" />
     <ClInclude Include="StartMenu.hpp" />
+    <ClInclude Include="Utility.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="retganon.ttf" />

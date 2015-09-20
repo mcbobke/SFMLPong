@@ -55,7 +55,7 @@ void MainGameState::Update(sf::RenderWindow* window)
 	sf::Time deltaTime = dT.getElapsedTime(); // Get elapsed time since last frame
 	dT.restart(); // Restart for next calculation
 
-	sf::Event event;
+	/*sf::Event event;
 	while (window->pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
@@ -63,7 +63,7 @@ void MainGameState::Update(sf::RenderWindow* window)
 			stateManager.SetState(nullptr);
 			return;
 		}
-	}
+	}*/
 
 	// Ball Updates
 	char result = ballOffScreen(ball, *window);
@@ -118,4 +118,5 @@ void MainGameState::Render(sf::RenderWindow* window)
 
 void MainGameState::Destroy(sf::RenderWindow* window)
 {
+
 }

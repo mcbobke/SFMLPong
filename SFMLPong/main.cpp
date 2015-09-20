@@ -3,6 +3,7 @@
 #include "SFML/Audio.hpp"
 #include "GameStateManager.hpp"
 #include "MainGameState.hpp"
+#include "StartMenu.hpp"
 
 GameStateManager stateManager;
 
@@ -14,7 +15,9 @@ int main()
 	// State Setup
 	stateManager.SetWindow(&window);
 
-	stateManager.SetState(new MainGameState());
+	//stateManager.SetState(new MainGameState());
+
+	stateManager.SetState(new StartMenu());
 
 	// Update loop
 	while (window.isOpen())
@@ -24,15 +27,16 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 			{
+				delete stateManager.getState();
 				window.close();
-				break;
+				return 0;
 			}
 		}
 
 		if (!stateManager.stateExists())
 		{
 			window.close();
-			break;
+			return 0;
 		}
 
 		stateManager.UpdateState();

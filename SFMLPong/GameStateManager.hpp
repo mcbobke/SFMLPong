@@ -34,6 +34,8 @@ public:
 
 	bool stateExists();
 
+	GameState* getState();
+
 private:
 
 	GameState* state;

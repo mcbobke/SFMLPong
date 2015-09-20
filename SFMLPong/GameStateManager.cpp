@@ -43,3 +43,8 @@ bool GameStateManager::stateExists()
 {
 	return this->state != nullptr;
 }
+
+GameState* GameStateManager::getState()
+{
+	return state;
+}
